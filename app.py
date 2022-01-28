@@ -23,11 +23,8 @@ def home():
     diabetes_pedigree_function = float(request.form["DiabetesPedigreeFunction"])
     age = float(request.form["Age"])
     # Code to predict the outcome:
-    to_predict = (pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age)
-    to_predict_as_np = np.asarray(to_predict)
-    to_predict_reshaped = to_predict_as_np.reshape(1, -1)
-    prediction_of_to_predict = model.predict(to_predict_reshaped)
-    result = "Some ERROR occured try again."
+    to_predict = [[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]]
+    prediction_of_to_predict = model.predict(to_predict)
     if prediction_of_to_predict[0] == 1:
         result = "The patient has diabetes."
     elif prediction_of_to_predict[0] == 0:
